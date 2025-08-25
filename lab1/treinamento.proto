@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package lab1;
+
+
+message Amostra{
+    repeated float atributos =1;
+    int32 rotulo =2;
+}
+
+message FitRequest{
+    repeated Amostra dados_treino = 1;
+
+}
+
+message FitResponse{
+    float acuracia =1;
+}
+
+message PredictRequest{
+    repeated float atributos = 1;
+}
+
+message PredictResponse{
+    int32 result = 1;
+}
+
+service ModeloService{
+
+    rpc Fit(FitRequest) returns (FitResponse);
+    rpc Predict(PredictRequest) returns (PredictResponse);
+}
